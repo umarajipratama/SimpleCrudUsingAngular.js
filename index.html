@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Angularjs PHP MySql - Single Page CRUD</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<script src="js/angular.js"></script>
+		<script src="js/app.js"></script>
+	</head>
+	<!-- menset awa aplikasi -->
+	<body ng-app="MyApp" ng-controller="MyCtrl">
+		<div class="container">
+			<div class="row">
+				<fieldset>
+					<legend>Data</legend>
+					<!-- membuat tabel untuk merender data -->
+					<!-- dapatkan semua data dari server pada saat aplikasi pertama kali dijalankan -->
+					<table class="table table-striped" ng-init="dapatkanData()">
+						<thead>
+							<th>#</th>
+							<th>Nama</th>
+							<th>Alamat</th>
+							<th>No. Telp</th>
+							<th>Email</th>
+							<th>Aksi</th>
+						</thead>
+						<tbody>
+							<!-- inputan untuk memasukkan data -->
+							<tr>
+								<td></td>
+								<td>
+									<input type="text" class="form-control" ng-model="pelangganText.nama" />
+								</td>
+								<td>
+									<input type="text" class="form-control" ng-model="pelangganText.alamat" />
+								</td>
+								<td>
+									<input type="text" class="form-control" ng-model="pelangganText.telp" />
+								</td>
+								<td>
+									<input type="text" class="form-control" ng-model="pelangganText.email" />
+								</td>
+								<td>
+									<button class="btn btn-primary" ng-click="simpanData()">Simpan</button>
+								</td>
+							</tr>
+							<!-- ng-repeat untuk merender semua data pelanggan -->
+							<tr ng-repeat="item in dataPelanggan">
+								<td>{{$index+1}}</td> <!-- nomor baris -->
+								<td>{{item.nama}}</td>
+								<td>{{item.alamat}}</td>
+								<td>{{item.telp}}</td>
+								<td>{{item.email}}</td>
+								<td>
+									<!-- tombol untuk menset inputan sesuai dengan baris yang dipilih agar bisa diedit -->
+									<button class="btn btn-success" ng-click="ubah(item,pelangganText)">Ubah</button>
+									<!-- tombol untuk menghapus data -->
+									<button class="btn btn-danger" ng-click="hapusData(item.id)">Hapus</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</fieldset>
+			</div>
+		</div>
+	</body>
+</html>
